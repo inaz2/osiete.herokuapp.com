@@ -3,7 +3,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Greeting
+from .models import Topic
 from .forms import TopicForm
 
 # Create your views here.
@@ -26,7 +26,13 @@ def ask(request):
     if request.method == 'POST':
         form = TopicForm(request.POST)
         if form.is_valid():
-            id = 1
+            topic = Topic()
+            topic.text = form.cleaned_data.text
+            topic.profile = form.cleaned_data.profile
+            topic.ipaddress = request.META.get('REMOTE_ADDR')
+            topic.useragent = request.META.get('USER_AGENT')
+            topic.save()
+            id = topic.id
             return HttpResponseRedirect("/topic/%d" % id)
     else:
         form = TopicForm()
