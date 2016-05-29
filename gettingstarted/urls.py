@@ -11,6 +11,9 @@ import hello.views
 
 urlpatterns = [
     url(r'^$', hello.views.index, name='index'),
+    url(r'^ask', hello.views.ask, name='ask'),
+    url(r'^topic/(\d+)', hello.views.topic, name='topic'),
+    url(r'^answer/(\d+)', hello.views.answer, name='answer'),
     url(r'^db', hello.views.db, name='db'),
     url(r'^admin/', include(admin.site.urls)),
 ]

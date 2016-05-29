@@ -9,6 +9,18 @@ def index(request):
     return render(request, 'index.html')
 
 
+def ask(request):
+    return render(request, 'ask.html')
+
+
+def topic(request, id):
+    return render(request, 'topic.html')
+
+
+def answer(request, id):
+    return render(request, 'topic.html')
+
+
 def db(request):
 
     greeting = Greeting()
