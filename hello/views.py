@@ -27,8 +27,8 @@ def ask(request):
         form = TopicForm(request.POST)
         if form.is_valid():
             topic = Topic()
-            topic.text = form.cleaned_data.text
-            topic.profile = form.cleaned_data.profile
+            topic.text = form.cleaned_data['text']
+            topic.profile = form.cleaned_data['profile']
             topic.ipaddress = request.META.get('REMOTE_ADDR')
             topic.useragent = request.META.get('USER_AGENT')
             topic.save()
