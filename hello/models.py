@@ -6,8 +6,8 @@ class Greeting(models.Model):
 
 
 class Topic(models.Model):
-    name = models.CharField(256)
     text = models.CharField(1024)
+    profile = models.CharField(256)
     ipaddress = models.GenericIPAddressField()
     useragent = models.CharField(1024)
     created = models.DateTimeField('date created', auto_now_add=True)
@@ -16,8 +16,8 @@ class Topic(models.Model):
 
 class Answer(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    name = models.CharField(256)
     text = models.CharField(1024)
+    profile = models.CharField(256)
     ipaddress = models.GenericIPAddressField()
     useragent = models.CharField(1024)
     created = models.DateTimeField('date created', auto_now_add=True)
