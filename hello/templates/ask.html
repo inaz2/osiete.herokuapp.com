@@ -10,16 +10,17 @@
 <form action="/ask" method="post">
 {% csrf_token %}
 
-{% if form.subject.errors %}
+{% if form.non_field_errors %}
 <div class="alert alert-danger" role="alert">
 {{ form.non_field_errors }}
 </div>
 {% endif %}
 
 <p><input class="form-control" style="width: auto; display: inline;" name="text" type="text" size="60" maxlength="1024" value="" placeholder="今期のおすすめアニメ"> 教えて！</p>
-<p>プロフィール: <input class="form-control" style="width: auto; display: inline;" name="profile" type="text" size="40" maxlength="256" value="" placeholder="20代男性"></p>
-<p><input class="btn btn-default" type="submit" value="送信する"></p>
+<p>プロフィール: <input class="form-control" style="width: auto; display: inline;" name="profile" type="text" size="40" maxlength="256" value="" placeholder="20代男性">
+   <input class="btn btn-default" type="submit" value="送信する"></p>
 </form>
+
 </div>
 </div>
 

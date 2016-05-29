@@ -3,8 +3,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
-from .models import Topic
-from .forms import TopicForm
+from .models import Topic, Answer
+from .forms import TopicForm, AnswerForm
 
 # Create your views here.
 def index(request):
@@ -32,8 +32,7 @@ def ask(request):
             topic.ipaddress = request.META.get('REMOTE_ADDR')
             topic.useragent = request.META.get('HTTP_USER_AGENT')
             topic.save()
-            id = topic.id
-            return HttpResponseRedirect("/topic/%d" % id)
+            return HttpResponseRedirect("/topic/%d" % topic.id)
     else:
         form = TopicForm()
 
@@ -42,8 +41,27 @@ def ask(request):
 
 
 def topic(request, id):
-    variables = {'title': 'xxx教えて！'}
-    return render(request, 'topic.html', {'variables': variables})
+    topic = Topic.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = Answer()
+            answer.topic = topic
+            answer.text = form.cleaned_data['text']
+            answer.profile = form.cleaned_data['profile']
+            answer.ipaddress = request.META.get('REMOTE_ADDR')
+            answer.useragent = request.META.get('HTTP_USER_AGENT')
+            answer.save()
+            return HttpResponseRedirect("/topic/%d" % topic.id)
+    else:
+        form = AnswerForm()
+
+    topic.viewcount += 1
+    topic.save()
+    answers = topic.answer_set.order_by('created')
+    variables = {'title': u"%s教えて！" % topic.text }
+    return render(request, 'topic.html', {'variables': variables, 'topic': topic, 'answers': answers, 'form': form})
 
 
 def answer(request, id):

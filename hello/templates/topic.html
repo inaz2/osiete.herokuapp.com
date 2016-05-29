@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="row marketing">
+<div class="col-gl-12">
+<h1><strong>{{ topic.text }}</strong> 教えて！ <small>{{ topic.profile }}</small></h1>
+
+{% for answer in answers %}
+<h2>{{ answer.text }} <small>{{ answer.profile }}</small>
+<button type="button" class="btn btn-default btn-xs">
+  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ answer.likecount }}
+</button>
+</h2>
+{% endfor %}
+
+<form method="post" action="/topic/{{ topic.id }}">
+{% csrf_token %}
+
+{% if form.non_field_errors %}
+<div class="alert alert-danger" role="alert">
+{{ form.non_field_errors }}
+</div>
+{% endif %}
+
+<p><input class="form-control" style="width: auto; display: inline;" type="text" size="80" name="text" value=""></p>
+<p>プロフィール: <input class="form-control" style="width: auto; display: inline;" type="text" size="60" name="profile" value="" placeholder="20代男性">
+   <input type="submit" class="btn btn-default" value="答える"></p>
+</form>
+
+</div>
+</div>
+
+
+{% endblock %}
