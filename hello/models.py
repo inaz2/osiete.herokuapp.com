@@ -11,7 +11,7 @@ class Topic(models.Model):
     ipaddress = models.GenericIPAddressField()
     useragent = models.CharField(max_length=1024)
     created = models.DateTimeField('date created', auto_now_add=True)
-    viewcount = models.IntegerField()
+    viewcount = models.IntegerField(default=0)
 
 
 class Answer(models.Model):
@@ -21,4 +21,4 @@ class Answer(models.Model):
     ipaddress = models.GenericIPAddressField()
     useragent = models.CharField(max_length=1024)
     created = models.DateTimeField('date created', auto_now_add=True)
-    likecount = models.IntegerField()
+    likecount = models.IntegerField(default=0)

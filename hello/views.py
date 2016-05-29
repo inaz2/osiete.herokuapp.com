@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Topic
 from .forms import TopicForm
@@ -30,7 +30,7 @@ def ask(request):
             topic.text = form.cleaned_data['text']
             topic.profile = form.cleaned_data['profile']
             topic.ipaddress = request.META.get('REMOTE_ADDR')
-            topic.useragent = request.META.get('USER_AGENT')
+            topic.useragent = request.META.get('HTTP_USER_AGENT')
             topic.save()
             id = topic.id
             return HttpResponseRedirect("/topic/%d" % id)
