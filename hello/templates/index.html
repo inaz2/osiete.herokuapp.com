@@ -13,13 +13,21 @@
 <div class="col-lg-6">
 <h2><span class="glyphicon glyphicon-signal" aria-hidden="true"></span> 人気の質問</h2>
 
-<p><a href="/popular">人気の質問をもっと見る</a></p>
+{% for topic in topic_popular %}
+<p><a href="/topic/{{ topic.id }}"><strong>{{ topic.text }}</strong> 教えて！</a></p>
+{% endfor %}
+
+<p><a href="/popular">&raquo; 人気の質問をもっと見る</a></p>
 </div>
 
 <div class="col-lg-6">
 <h2><span class="glyphicon glyphicon-flash" aria-hidden="true"></span> 新しい質問</h2>
 
-<p><a href="/latest">新しい質問をもっと見る</a></p>
+{% for topic in topic_latest %}
+<p><a href="/topic/{{ topic.id }}"><strong>{{ topic.text }}</strong> 教えて！</a></p>
+{% endfor %}
+
+<p><a href="/latest">&raquo; 新しい質問をもっと見る</a></p>
 </div>
 </div>
 

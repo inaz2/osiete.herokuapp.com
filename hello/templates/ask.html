@@ -10,10 +10,8 @@
 <form action="/ask" method="post">
 {% csrf_token %}
 
-{% if form.non_field_errors %}
-<div class="alert alert-danger" role="alert">
-{{ form.non_field_errors }}
-</div>
+{% if form.non_field_errors or form.text.errors or form.profile.errors %}
+<div class="alert alert-danger" role="alert">入力は必須です。</div>
 {% endif %}
 
 <p><input class="form-control" style="width: auto; display: inline;" name="text" type="text" size="60" maxlength="1024" value="" placeholder="今期のおすすめアニメ"> 教えて！</p>

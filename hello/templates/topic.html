@@ -7,9 +7,14 @@
 <div class="col-gl-12">
 <h1><strong>{{ topic.text }}</strong> 教えて！ <small>{{ topic.profile }}</small></h1>
 
+<p>
+<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-hashtags="osiete">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</p>
+
 {% for answer in answers %}
 <h2>{{ answer.text }} <small>{{ answer.profile }}</small>
-<button type="button" class="btn btn-default btn-xs">
+<button type="button" class="btn btn-default btn-xs" data-answer-id="{{ answer.id }}" onclick="like_clicked(this)">
   <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ answer.likecount }}
 </button>
 </h2>
@@ -18,16 +23,18 @@
 <form method="post" action="/topic/{{ topic.id }}">
 {% csrf_token %}
 
-{% if form.non_field_errors %}
-<div class="alert alert-danger" role="alert">
-{{ form.non_field_errors }}
-</div>
+{% if form.non_field_errors or form.text.errors or form.profile.errors %}
+<div class="alert alert-danger" role="alert">入力は必須です。</div>
 {% endif %}
 
-<p><input class="form-control" style="width: auto; display: inline;" type="text" size="80" name="text" value=""></p>
+<p><input class="form-control" style="width: auto; display: inline;" type="text" size="80" name="text" value="" placeholder="{{ topic.text }}"></p>
 <p>プロフィール: <input class="form-control" style="width: auto; display: inline;" type="text" size="60" name="profile" value="" placeholder="20代男性">
    <input type="submit" class="btn btn-default" value="答える"></p>
 </form>
+
+<script type="text/javascript"><!--
+amazon_ad_tag = "osiete0c-22"; amazon_ad_width = "728"; amazon_ad_height = "90"; amazon_ad_logo = "hide";//--></script>
+<script type="text/javascript" src="http://ir-jp.amazon-adsystem.com/s/ads.js"></script>
 
 </div>
 </div>

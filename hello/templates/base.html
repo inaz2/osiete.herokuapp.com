@@ -94,6 +94,24 @@ form {
   margin: 2em 0;
 }
 </style>
+<script type="text/javascript">
+function like_clicked(elem) {
+    elem = $(elem);
+    var answer_id = elem.attr('data-answer-id');
+    $.ajax({
+        type: "POST",
+        url: "/answer/" + answer_id,
+        data: {"increment": true, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+        dataType: "json",
+        success: function(response) {
+            elem.contents().last().replaceWith(" " + response.likecount);
+        },
+        error: function(rs, e) {
+            alert("サーバーエラー");
+        }
+    });
+}
+</script>
 </head>
 <body>
 
