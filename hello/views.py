@@ -9,8 +9,7 @@ try:
 except ImportError:
     import json
 
-from .models import Topic, Answer
-from .forms import TopicForm, AnswerForm
+from .models import Topic, Answer, TopicForm, AnswerForm
 
 # Create your views here.
 def index(request):

@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 
 # Create your models here.
 class Greeting(models.Model):
@@ -22,3 +23,15 @@ class Answer(models.Model):
     useragent = models.CharField(max_length=1024)
     created = models.DateTimeField('date created', auto_now_add=True)
     likecount = models.IntegerField(default=0)
+
+
+class TopicForm(ModelForm):
+    class Meta:
+        model = Topic
+        fields = ['text', 'profile']
+
+
+class AnswerForm(ModelForm):
+    class Meta:
+        model = Answer
+        fields = ['text', 'profile']
