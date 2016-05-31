@@ -15,8 +15,13 @@ from .models import Topic, Answer, TopicForm, AnswerForm
 def index(request):
     topic_popular = Topic.objects.order_by('-viewcount')[:8]
     topic_latest = Topic.objects.order_by('-created')[:8]
+    topic_asked_ids = request.session.get('topic_asked_ids')
+    if topic_asked_ids:
+        topic_asked = Topic.objects.filter(id__in=topic_asked_ids)
+    else:
+        topic_asked = []
     variables = {'title': 'OSIETE: インターネットに聞いてみよう'}
-    return render(request, 'index.html', {'variables': variables, 'topic_popular': topic_popular, 'topic_latest': topic_latest})
+    return render(request, 'index.html', {'variables': variables, 'topic_popular': topic_popular, 'topic_latest': topic_latest, 'topic_asked': topic_asked})
 
 
 def popular(request):
@@ -47,6 +52,8 @@ def ask(request):
             topic.ipaddress = request.META.get('REMOTE_ADDR')
             topic.useragent = request.META.get('HTTP_USER_AGENT')
             topic.save()
+            request.session.setdefault('topic_asked_ids', [])
+            request.session['topic_asked_ids'].append(topic.id)
             return HttpResponseRedirect("/topic/%d" % topic.id)
     else:
         form = TopicForm()
