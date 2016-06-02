@@ -49,7 +49,7 @@ def ask(request):
             topic = Topic()
             topic.text = form.cleaned_data['text']
             topic.profile = form.cleaned_data['profile']
-            topic.ipaddress = request.META.get('REMOTE_ADDR')
+            topic.ipaddress = request.META.get('HTTP_X_FORWARDED_FOR') or request.META.get('REMOTE_ADDR')
             topic.useragent = request.META.get('HTTP_USER_AGENT')
             topic.save()
             request.session.setdefault('topic_asked_ids', [])
@@ -72,7 +72,7 @@ def topic(request, id):
             answer.topic = topic
             answer.text = form.cleaned_data['text']
             answer.profile = form.cleaned_data['profile']
-            answer.ipaddress = request.META.get('REMOTE_ADDR')
+            answer.ipaddress = request.META.get('HTTP_X_FORWARDED_FOR') or request.META.get('REMOTE_ADDR')
             answer.useragent = request.META.get('HTTP_USER_AGENT')
             answer.save()
             return HttpResponseRedirect("/topic/%d" % topic.id)
