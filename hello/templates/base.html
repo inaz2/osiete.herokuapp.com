@@ -90,6 +90,11 @@ body {
   }
 }
 
+.header h3 a {
+  color: #777;
+  text-decoration: none;
+}
+
 form {
   margin: 2em 0;
 }
@@ -119,13 +124,12 @@ function like_clicked(elem) {
   <div class="header clearfix">
     <nav>
       <ul class="nav nav-pills pull-right">
-        <li role="presentation"><a href="/">Home</a></li>
         <li role="presentation"><a href="/latest">Latest</a></li>
         <li role="presentation"><a href="/popular">Popular</a></li>
         <li role="presentation"><a href="/ask">Ask</a></li>
       </ul>
     </nav>
-    <h3 class="text-muted">OSIETE</h3>
+    <h3><a href="/">OSIETE</a></h3>
   </div>
 
 {% block content %}{% endblock %}
