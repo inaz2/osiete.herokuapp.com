@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>おすすめのUXの本教えて！</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<style type="text/css">
+/* Space out content a bit */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* Custom page header */
+.header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.jumbotron .btn {
+  padding: 14px 24px;
+  font-size: 21px;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+.header h3 a {
+  color: #777;
+  text-decoration: none;
+}
+
+form {
+  margin: 2em 0;
+}
+</style>
+<script type="text/javascript">
+function like_clicked(elem) {
+    elem = $(elem);
+    var answer_id = elem.attr('data-answer-id');
+    $.ajax({
+        type: "POST",
+        url: "/answer/" + answer_id,
+        data: {"increment": true, 'csrfmiddlewaretoken': 'XCDesBhKVT48yyMgcl6njm2Mm1r5mkJA'},
+        dataType: "json",
+        success: function(response) {
+            elem.contents().last().replaceWith(" " + response.likecount);
+        },
+        error: function(rs, e) {
+            alert("サーバーエラー");
+        }
+    });
+}
+</script>
+</head>
+<body>
+
+<div class="container">
+  <div class="header clearfix">
+    <nav>
+      <ul class="nav nav-pills pull-right">
+        <li role="presentation"><a href="../latest.html">Latest</a></li>
+        <li role="presentation"><a href="../popular.html">Popular</a></li>
+        <li role="presentation"><a href="../ask.html">Ask</a></li>
+      </ul>
+    </nav>
+    <h3><a href="../index.html">OSIETE</a></h3>
+  </div>
+
+
+
+<div class="row marketing">
+<div class="col-gl-12">
+<h1><strong>おすすめのUXの本</strong> 教えて！ <small>20代男性</small></h1>
+
+<p>
+<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-hashtags="osiete">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</p>
+
+
+<h2>誰のためのデザイン？ <small></small>
+<button type="button" class="btn btn-default btn-xs" data-answer-id="10" onclick="like_clicked(this)">
+  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 2
+</button>
+</h2>
+
+<h2>発想する会社! ― 世界最高のデザイン・ファームIDEOに学ぶイノベーションの技法 <small></small>
+<button type="button" class="btn btn-default btn-xs" data-answer-id="14" onclick="like_clicked(this)">
+  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 1
+</button>
+</h2>
+
+
+<form method="post" action="4.html">
+<input type='hidden' name='csrfmiddlewaretoken' value='XCDesBhKVT48yyMgcl6njm2Mm1r5mkJA' />
+
+
+
+<p><input class="form-control" type="text" name="text" value="" placeholder="おすすめのUXの本"></p>
+<p>プロフィール（任意）: <input class="form-control" style="width: auto; display: inline;" type="text" name="profile" value="" placeholder="20代男性">
+   <input type="submit" class="btn btn-default" value="答える"></p>
+</form>
+
+</div>
+</div>
+
+
+
+
+  <footer class="footer">
+    <p>&copy; 2016 <a href="https://twitter.com/inaz2">@inaz2</a></p>
+  </footer>
+
+</div> <!-- /container -->
+
+</body>
+</html>
